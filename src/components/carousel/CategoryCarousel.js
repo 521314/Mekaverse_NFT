@@ -1,0 +1,149 @@
+import { useRef } from 'react';
+import Slider from 'react-slick';
+import PropTypes from 'prop-types';
+import { Icon } from '@iconify/react';
+import { Link as RouterLink } from 'react-router-dom';
+import arrowForwardFill from '@iconify/icons-eva/arrow-forward-fill';
+// material
+import { alpha, useTheme, styled } from '@material-ui/core/styles';
+import { Box, Paper, Link, Typography, CardContent, Stack } from '@material-ui/core';
+// utils
+import mockData from '../../utils/mock-data';
+//
+import { CarouselControlsArrowsBasic2 } from './controls';
+
+// ----------------------------------------------------------------------
+
+const MOCK_CAROUSELS = [
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_01.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_02.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_03.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_04.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_05.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_06.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_07.jpg',
+    description: 'Instruments'
+  },
+  {
+    title: 'Musical',
+    image: '/images/gallery/meka_08.jpg',
+    description: 'Instruments'
+  },
+];
+const RootStyle = styled('div')(({ theme }) => ({
+  // overflow: 'hidden',
+  position: 'relative',
+  '& .slick-slide': {
+    opacity: 0.5,
+    transition: 'all .5s'
+  },
+  '& .slick-center': {
+    transform: 'scale(1.3)',
+    opacity: 1
+  }
+}));
+// ----------------------------------------------------------------------
+
+CarouselItem.propTypes = {
+  item: PropTypes.object
+};
+
+function CarouselItem({ item }) {
+  const { image, title } = item;
+
+  return (
+    <div
+      sx={{
+        textAlign: 'center',
+        mx: 1,
+        borderRadius: 1,
+        display: 'flex',
+        justifyContent: 'center',
+        height: 495,
+        width: 495,
+        background: '#FFFFFF',
+        boxShadow: '0px 4px 31px rgba(0, 0, 0, 0.11)',
+        position: 'relative',
+        mb: 5,
+        margin: 10
+      }}
+    >
+        <Box component="img" src={image} style={{margin: '10px'}}/>
+    </div>
+  );
+}
+
+export default function CarouselCenterMode() {
+  const carouselRef = useRef();
+  const theme = useTheme();
+
+  const settings = {
+    slidesToShow: 3,
+    arrows: false,
+    centerMode: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    centerPadding: '60px',
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 960,
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1, centerPadding: '0' }
+      }
+    ]
+  };
+
+  const handlePrevious = () => {
+    carouselRef.current.slickPrev();
+  };
+
+  const handleNext = () => {
+    carouselRef.current.slickNext();
+  };
+
+  return (
+    <RootStyle>
+      <Slider ref={carouselRef} {...settings}>
+        {MOCK_CAROUSELS.map((item, index) => (
+          <CarouselItem key={index} item={item} />
+        ))}
+      </Slider>
+      {/* <CarouselControlsArrowsBasic2 onNext={handleNext} onPrevious={handlePrevious} /> */}
+    </RootStyle>
+  );
+}

@@ -1,0 +1,54 @@
+.video-player-wrapper {
+    width: 100% !important
+}
+
+.video-player-wrapper .video-controls {
+    display: none !important
+}
+
+.videoLoop::after {
+    position: absolute;
+    content: "";
+    width: 150px;
+    height: 139px;
+    right: 30px;
+    top: 200px;
+    background: url(./assets/images/pyramid/pyramyd.png) no-repeat;
+}
+
+.team_title::before {
+    z-index: 9999;
+    position: absolute;
+    content: "";
+    width: 123px;
+    height: 123px;
+    background: url(./assets/images/pyramid/golden_pyramyd.png) no-repeat;
+    left: -50px;
+    top: -110px;
+}
+
+.footer_link a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.roadmap_index {
+    margin-right: 20px;
+    color: #d02561;
+    font-size: 20px!important;
+}
+
+.vertical-timeline-element-icon {
+    color: #d02561!important;
+}
+
+.vertical-timeline-element-content-arrow {
+    display: none;
+}
+
+.vertical-timeline-element-content  {
+    background: #04091a!important;
+}
+
+.vertical-timeline-element--work {
+}
